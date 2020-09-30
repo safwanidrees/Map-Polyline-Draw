@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+[0.0.1] - 30 Sep 2020.
 
-* TODO: Describe initial release.
+Map Polyline Draw make easy to draw an polyline between two points of the map.
