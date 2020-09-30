@@ -1,14 +1,41 @@
-# map_polyline_draw
+# Map Polyline Draw
 
-Map Polyline Draw Package
+Map Polyline Draw Package show Map Polyline between Two Points in the map. It also has the feature to change the marker icon with your icon just provide the assets location. It also has feature to change polyline width and color. Map Polyine Draw using google_maps_flutter package for Google map and http package to get data from Google Map API
+
+## Screen Shots
+<img src="https://drive.google.com/uc?export=view&id=1B-crKk30r6PS7tqITBZ-oedi1irN93jt" alt="alt text" width="250">
+<img src="https://drive.google.com/uc?export=view&id=1xoRxpjuxEIvuD1PINcJRjgV5yOAxuZN3" alt="alt text" width="250">
+
+## Usage
+* To use this, add map_polyline_draw as a dependency in your pubspec.yaml file.
+* To use this, add google_maps_flutter as a dependency in your pubspec.yaml file.
 
 ## Getting Started
+* First integrate google map in your Project. For this Follow steps that provided in this link https://codelabs.developers.google.com/codelabs/google-maps-in-flutter/
+* Get an Google Map API key from https://cloud.google.com/maps-platform/
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Simple Code Snippet
+```flutter
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(
+          widget.title,
+        ),
+      ),
+      body: MapPolyLineDraw(
+        apiKey: "YOUR_API_KEY",
+        firstPoint: LatLng(24.8960309, 67.0792159),
+        secondPoint: LatLng(24.9425822, 67.0691675),
+      ),
+    );
+  }
+```
+* apiKey: "YOUR_API_KEY"
+* firstPoint: LatLng(latitude, longitude)
+* secondPoint: LatLng(latitude, longitude)
+
+These three are compulsory to add otherwiese it will generate an error
