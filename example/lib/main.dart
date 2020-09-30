@@ -14,17 +14,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: "Map Polyline Draw",),
+      home: MyHomePage(
+        title: "Map Polyline Draw",
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title})
-      : super(key: key);
+  MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
-
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -40,7 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: MapPolyLineDraw(
         apiKey: "YOUR_API_KEY",
         firstPoint: LatLng(24.8960309, 67.0792159),
-        secondPoint:LatLng(24.9425822, 67.0691675),
+        secondPoint: LatLng(24.9425822, 67.0691675),
+
         /// mapType: MapType.satellite,
         /// mapOnTap: (point) {
         ///   print(point.toString());
@@ -68,5 +69,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-
