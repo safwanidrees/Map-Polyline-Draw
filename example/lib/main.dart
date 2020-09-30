@@ -38,32 +38,32 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: MapPolyLineDraw(
-        apiKey: "YOUR-API-KEY",
+        apiKey: "YOUR_API_KEY",
         firstPoint: LatLng(24.8960309, 67.0792159),
         secondPoint:LatLng(24.9425822, 67.0691675),
-        // mapType: MapType.satellite,
-        // mapOnTap: (point) {
-        //   print(point.toString());
-        // },
-        // myLocationEnabled: true,
-        // markerOneOnTap: () {
-        //   print("Marker One Tap");
-        // },
-        // markerTwoOnTap: () {
-        //   print("Marker Two Tap");
-        // },
-        // trafficEnable: true,
-        // markerOneInfoText: "First Point",
-        // markerTwoInfoText: "Second Point",
-        // showMarkerOne: true,
-        // showMarkerTwo: true,
-        // firstPointMarkerIcon: 'assets/images/map.png',
-        // secondPointMarkerIcon: 'assets/images/map.png',
-        // lineColor: Colors.green,
-        // lineWidth: 10,
-        // mapZoom: 10,
-        // firstMarkerIconWidth: 120,
-        // secondMarkerIconWidth: 120,
+        /// mapType: MapType.satellite,
+        /// mapOnTap: (point) {
+        ///   print(point.toString());
+        /// },
+        /// myLocationEnabled: true,
+        /// markerOneOnTap: () {
+        ///   print("Marker One Tap");
+        /// },
+        /// markerTwoOnTap: () {
+        ///   print("Marker Two Tap");
+        /// },
+        /// trafficEnable: true,
+        /// markerOneInfoText: "First Point",
+        /// markerTwoInfoText: "Second Point",
+        /// showMarkerOne: true,
+        /// showMarkerTwo: true,
+        /// firstPointMarkerIcon: 'assets/images/map.png',
+        /// secondPointMarkerIcon: 'assets/images/map.png',
+        /// lineColor: Colors.green,
+        /// lineWidth: 10,
+        /// mapZoom: 10,
+        /// firstMarkerIconWidth: 120,
+        /// secondMarkerIconWidth: 120,
       ),
     );
   }

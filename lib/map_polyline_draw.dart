@@ -9,26 +9,26 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_polyline_draw/provider/location_provider.dart';
 
 class MapPolyLineDraw extends StatefulWidget {
-  final String apiKey; // Map Api Key
-  final LatLng firstPoint; // Marker One Longitude and Latitude
-  final LatLng secondPoint; // Marker Two Longitude and Latitude
-  final Color lineColor; //Polyline Color
-  final int lineWidth; // Polyline width
-  final int firstMarkerIconWidth; //First Marker icon Width
-  final int secondMarkerIconWidth; //Second Marker Icon Width
-  final String firstPointMarkerIcon; //First Marker Icon
-  final String secondPointMarkerIcon; //Second Marker Icon
-  final double mapZoom; //Map Zoom
-  final MapType mapType; //Map Type
-  final Function mapOnTap; //Map OnTap
-  final bool trafficEnable; //Map Traffic Enabled
-  final bool myLocationEnabled; //My Location Enabled
-  final bool showMarkerOne; // First Marker icon Hide/Show
-  final bool showMarkerTwo; // Second Marker icon Hide/Show
-  final String markerOneInfoText; // First Marker Info Window
-  final String markerTwoInfoText; // Second Marker Info Window
-  final Function markerOneOnTap; // Marker One Tap
-  final Function markerTwoOnTap; // Marker Two Tap
+  final String apiKey; /// Map Api Key
+  final LatLng firstPoint; /// Marker One Longitude and Latitude
+  final LatLng secondPoint; /// Marker Two Longitude and Latitude
+  final Color lineColor; ///Polyline Color
+  final int lineWidth; /// Polyline width
+  final int firstMarkerIconWidth; ///First Marker icon Width
+  final int secondMarkerIconWidth; ///Second Marker Icon Width
+  final String firstPointMarkerIcon; ///First Marker Icon
+  final String secondPointMarkerIcon; ///Second Marker Icon
+  final double mapZoom; ///Map Zoom
+  final MapType mapType; ///Map Type
+  final Function mapOnTap; ///Map OnTap
+  final bool trafficEnable; ///Map Traffic Enabled
+  final bool myLocationEnabled; ///My Location Enabled
+  final bool showMarkerOne; /// First Marker icon Hide/Show
+  final bool showMarkerTwo; /// Second Marker icon Hide/Show
+  final String markerOneInfoText; /// First Marker Info Window
+  final String markerTwoInfoText; /// Second Marker Info Window
+  final Function markerOneOnTap; /// Marker One Tap
+  final Function markerTwoOnTap; /// Marker Two Tap
 
   MapPolyLineDraw(
       {@required this.apiKey,
@@ -94,30 +94,30 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
   }
 
   Future<void> getData() async {
-    // Clearing Previous Marker and Polyline
+    /// Clearing Previous Marker and Polyline
     LocationProvider.markers.clear();
     LocationProvider.polyLines.clear();
     try {
-      //Loading Start
+      ///Loading Start
       setState(() {
         _isLoading = true;
       });
-      // Checking if Api Key is there or not
+      /// Checking if Api Key is there or not
       if (widget.apiKey == null || widget.apiKey == "") {
         print("Please Provide you api key");
         return;
       }
-      // Checking if Polyline First Point is there or not
+      /// Checking if Polyline First Point is there or not
       if (widget.firstPoint == null) {
         print("Please Provide First Point");
         return;
       }
-      // Checking if Polyline Second Point is there or not
+      /// Checking if Polyline Second Point is there or not
       if (widget.secondPoint == null) {
         print("Please Provide Second Point");
         return;
       }
-      // Applying Condition One
+      /// Applying Condition One
       if (widget.firstPointMarkerIcon == null &&
           widget.secondPointMarkerIcon == null) {
         await LocationProvider.drawLine(
@@ -133,7 +133,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
             markerOneOnTap: widget.markerOneOnTap,
             markerTwoOnTap: widget.markerTwoOnTap);
       }
-      // Applying Condition Two
+      /// Applying Condition Two
       else if (widget.firstPointMarkerIcon == null) {
         final Uint8List secondmarkerIcon = await getBytesFromAsset(
             widget.secondPointMarkerIcon, widget.secondMarkerIconWidth);
@@ -152,7 +152,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
             showFirstMarker: widget.showMarkerOne,
             showSecondMarker: widget.showMarkerTwo);
       }
-      // Applying Condition Three
+      /// Applying Condition Three
       else if (widget.secondPointMarkerIcon == null) {
         final Uint8List firstmarkerIcon = await getBytesFromAsset(
             widget.firstPointMarkerIcon, widget.firstMarkerIconWidth);
@@ -171,7 +171,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
             markerOneOnTap: widget.markerOneOnTap,
             markerTwoOnTap: widget.markerTwoOnTap);
       }
-      // Applying Condition Four
+      /// Applying Condition Four
       else {
         final Uint8List firstmarkerIcon = await getBytesFromAsset(
             widget.firstPointMarkerIcon, widget.firstMarkerIconWidth);
