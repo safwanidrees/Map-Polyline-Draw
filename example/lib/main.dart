@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_polyline_draw/map_polyline_draw.dart';
 
 void main() {
@@ -40,9 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: MapPolyLineDraw(
         //These three are compulsory to add otherwise it will generate error
         apiKey: "YOUR_API_KEY",
-        firstPoint: LatLng(24.8960309, 67.0792159),
-        secondPoint: LatLng(24.9425822, 67.0691675),
-        // mapType: MapType.satellite,
+        firstPoint: MapPoint(24.8960309, 67.0792159),
+        secondPoint: MapPoint(24.9425822, 67.0691675),
+        // mapTypes: MapTypes.satellite,
         // mapOnTap: (point) {
         //   print(point.toString());
         // },

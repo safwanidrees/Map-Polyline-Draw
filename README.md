@@ -8,7 +8,6 @@ Map Polyline Draw Package show Map Polyline between Two Points in the map. It al
 
 ## Usage
 * To use this, add map_polyline_draw as a dependency in your pubspec.yaml file.
-* To use this, add google_maps_flutter as a dependency in your pubspec.yaml file.
 
 ## Getting Started
 * First integrate google map in your Project. For this Follow steps that provided in this link https://codelabs.developers.google.com/codelabs/google-maps-in-flutter/
@@ -28,14 +27,14 @@ Map Polyline Draw Package show Map Polyline between Two Points in the map. It al
       ),
       body: MapPolyLineDraw(
         apiKey: "YOUR_API_KEY",
-        firstPoint: LatLng(24.8960309, 67.0792159),
-        secondPoint: LatLng(24.9425822, 67.0691675),
+        firstPoint: MapPoint(24.8960309, 67.0792159),
+        secondPoint: MapPoint(24.9425822, 67.0691675),
       ),
     );
   }
 ```
 * apiKey: "YOUR_API_KEY"
-* firstPoint: LatLng(latitude, longitude)
-* secondPoint: LatLng(latitude, longitude)
+* firstPoint: MapPoint(latitude, longitude)
+* secondPoint: MapPoint(latitude, longitude)
 
-These three are compulsory to add otherwiese it will generate an error
+These three are compulsory to add otherwise it will generate an error

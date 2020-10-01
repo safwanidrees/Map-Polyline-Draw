@@ -10,3 +10,7 @@ Map Polyline Draw make easy to draw an polyline between two points of the map.
 
 Map Polyline Draw make easy to draw an polyline between two points of the map.
 
+[1.0.1] - 1 Oct 2020.
+
+Map Polyline Draw First stable Version.
+

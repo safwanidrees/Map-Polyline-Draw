@@ -12,10 +12,10 @@ class MapPolyLineDraw extends StatefulWidget {
   final String apiKey;
 
   /// Map Api Key
-  final LatLng firstPoint;
+  final MapPoint firstPoint;
 
   /// Marker One Longitude and Latitude
-  final LatLng secondPoint;
+  final MapPoint secondPoint;
 
   /// Marker Two Longitude and Latitude
   final Color lineColor;
@@ -39,7 +39,7 @@ class MapPolyLineDraw extends StatefulWidget {
   final double mapZoom;
 
   ///Map Zoom
-  final MapType mapType;
+  final MapTypes mapTypes;
 
   ///Map Type
   final Function mapOnTap;
@@ -81,7 +81,7 @@ class MapPolyLineDraw extends StatefulWidget {
       this.mapZoom = 14,
       this.firstPointMarkerIcon,
       this.secondPointMarkerIcon,
-      this.mapType = MapType.normal,
+      this.mapTypes = MapTypes.normal,
       this.mapOnTap,
       this.trafficEnable = false,
       this.myLocationEnabled = false,
@@ -99,6 +99,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
   GoogleMapController mapController;
   bool _isLoading = false;
   Completer<GoogleMapController> _controller = Completer();
+  MapType type;
 
   @override
   void initState() {
@@ -108,6 +109,40 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
 
   @override
   Widget build(BuildContext context) {
+    switch (widget.mapTypes) {
+      case MapTypes.satellite:
+        {
+          type = MapType.satellite;
+        }
+        break;
+
+      case MapTypes.none:
+        {
+          type = MapType.none;
+        }
+        break;
+      case MapTypes.hybrid:
+        {
+          type = MapType.hybrid;
+        }
+        break;
+      case MapTypes.terrain:
+        {
+          type = MapType.terrain;
+        }
+        break;
+      case MapTypes.normal:
+        {
+          type = MapType.normal;
+        }
+        break;
+      default:
+        {
+          type = MapType.normal;
+        }
+        break;
+    }
+
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -118,7 +153,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
                 target: LatLng(
                     widget.firstPoint.latitude, widget.firstPoint.longitude),
                 zoom: widget.mapZoom),
-            mapType: widget.mapType,
+            mapType: type,
             compassEnabled: true,
             onMapCreated: (GoogleMapController controller) {
               setState(() {
@@ -135,6 +170,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
 
   Future<void> getData() async {
     /// Clearing Previous Marker and Polyline
+    print(widget.firstPoint.latitude);
     LocationProvider.markers.clear();
     LocationProvider.polyLines.clear();
     try {
@@ -166,8 +202,10 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
           widget.secondPointMarkerIcon == null) {
         await LocationProvider.drawLine(
             apiKey: widget.apiKey,
-            firstPoint: widget.firstPoint,
-            secondPoint: widget.secondPoint,
+            firstPoint:
+                LatLng(widget.firstPoint.latitude, widget.firstPoint.longitude),
+            secondPoint: LatLng(
+                widget.secondPoint.latitude, widget.secondPoint.longitude),
             lineColor: widget.lineColor,
             lineWidth: widget.lineWidth,
             showFirstMarker: widget.showMarkerOne,
@@ -185,8 +223,10 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
 
         await LocationProvider.drawLine(
             apiKey: widget.apiKey,
-            firstPoint: widget.firstPoint,
-            secondPoint: widget.secondPoint,
+            firstPoint:
+                LatLng(widget.firstPoint.latitude, widget.firstPoint.longitude),
+            secondPoint: LatLng(
+                widget.secondPoint.latitude, widget.secondPoint.longitude),
             lineColor: widget.lineColor,
             secondmarkerIcon: secondmarkerIcon,
             info2: widget.markerTwoInfoText,
@@ -205,8 +245,10 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
 
         await LocationProvider.drawLine(
             apiKey: widget.apiKey,
-            firstPoint: widget.firstPoint,
-            secondPoint: widget.secondPoint,
+            firstPoint:
+                LatLng(widget.firstPoint.latitude, widget.firstPoint.longitude),
+            secondPoint: LatLng(
+                widget.secondPoint.latitude, widget.secondPoint.longitude),
             lineColor: widget.lineColor,
             firstmarkerIcon: firstmarkerIcon,
             lineWidth: widget.lineWidth,
@@ -227,8 +269,10 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
 
         await LocationProvider.drawLine(
             apiKey: widget.apiKey,
-            firstPoint: widget.firstPoint,
-            secondPoint: widget.secondPoint,
+            firstPoint:
+                LatLng(widget.firstPoint.latitude, widget.firstPoint.longitude),
+            secondPoint: LatLng(
+                widget.secondPoint.latitude, widget.secondPoint.longitude),
             firstmarkerIcon: firstmarkerIcon,
             secondmarkerIcon: secondmarkerIcon,
             lineColor: widget.lineColor,
@@ -260,4 +304,18 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
         .buffer
         .asUint8List();
   }
+}
+
+class MapPoint {
+  double longitude;
+  double latitude;
+  MapPoint(this.latitude, this.longitude);
+}
+
+enum MapTypes {
+  none,
+  normal,
+  satellite,
+  terrain,
+  hybrid,
 }
