@@ -1,6 +1,6 @@
 name: map_polyline_draw
 description: Map Polyline Draw Package to show Map Polyline between Two Points
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/safwanidrees/Map-Polyline-Draw.git
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_maps_flutter: ^0.5.33
+  google_maps_flutter: ^1.0.3
   http: ^0.12.2
 
 

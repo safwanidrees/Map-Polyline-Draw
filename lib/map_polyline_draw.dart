@@ -170,7 +170,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
 
   Future<void> getData() async {
     /// Clearing Previous Marker and Polyline
-    print(widget.firstPoint.latitude);
+
     LocationProvider.markers.clear();
     LocationProvider.polyLines.clear();
     try {

@@ -14,3 +14,7 @@ Map Polyline Draw make easy to draw an polyline between two points of the map.
 
 Map Polyline Draw First stable Version.
 
+[1.0.2] - 14 Oct 2020.
+
+Latest Google map version
+
