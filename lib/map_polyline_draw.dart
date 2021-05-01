@@ -30,10 +30,10 @@ class MapPolyLineDraw extends StatefulWidget {
   final int secondMarkerIconWidth;
 
   ///Second Marker Icon Width
-  final String firstPointMarkerIcon;
+  final String? firstPointMarkerIcon;
 
   ///First Marker Icon
-  final String secondPointMarkerIcon;
+  final String? secondPointMarkerIcon;
 
   ///Second Marker Icon
   final double mapZoom;
@@ -42,7 +42,7 @@ class MapPolyLineDraw extends StatefulWidget {
   final MapTypes mapTypes;
 
   ///Map Type
-  final Function mapOnTap;
+  final Function? mapOnTap;
 
   ///Map OnTap
   final bool trafficEnable;
@@ -57,23 +57,23 @@ class MapPolyLineDraw extends StatefulWidget {
   final bool showMarkerTwo;
 
   /// Second Marker icon Hide/Show
-  final String markerOneInfoText;
+  final String? markerOneInfoText;
 
   /// First Marker Info Window
-  final String markerTwoInfoText;
+  final String? markerTwoInfoText;
 
   /// Second Marker Info Window
-  final Function markerOneOnTap;
+  final Function? markerOneOnTap;
 
   /// Marker One Tap
-  final Function markerTwoOnTap;
+  final Function? markerTwoOnTap;
 
   /// Marker Two Tap
 
   MapPolyLineDraw(
-      {@required this.apiKey,
-      @required this.firstPoint,
-      @required this.secondPoint,
+      {required this.apiKey,
+      required this.firstPoint,
+      required this.secondPoint,
       this.lineWidth = 3,
       this.lineColor = Colors.black,
       this.firstMarkerIconWidth = 100,
@@ -96,10 +96,10 @@ class MapPolyLineDraw extends StatefulWidget {
 }
 
 class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
-  GoogleMapController mapController;
+  GoogleMapController? mapController;
   bool _isLoading = false;
   Completer<GoogleMapController> _controller = Completer();
-  MapType type;
+  late MapType type;
 
   @override
   void initState() {
@@ -161,7 +161,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
               });
             },
             trafficEnabled: widget.trafficEnable,
-            onTap: widget.mapOnTap,
+            onTap: widget.mapOnTap as void Function(LatLng)?,
             markers: LocationProvider.markers,
             onCameraMove: LocationProvider.onCameraMove,
             polylines: LocationProvider.polyLines,
@@ -178,24 +178,6 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
       setState(() {
         _isLoading = true;
       });
-
-      /// Checking if Api Key is there or not
-      if (widget.apiKey == null || widget.apiKey == "") {
-        print("Please Provide you api key");
-        return;
-      }
-
-      /// Checking if Polyline First Point is there or not
-      if (widget.firstPoint == null) {
-        print("Please Provide First Point");
-        return;
-      }
-
-      /// Checking if Polyline Second Point is there or not
-      if (widget.secondPoint == null) {
-        print("Please Provide Second Point");
-        return;
-      }
 
       /// Applying Condition One
       if (widget.firstPointMarkerIcon == null &&
@@ -219,7 +201,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
       /// Applying Condition Two
       else if (widget.firstPointMarkerIcon == null) {
         final Uint8List secondmarkerIcon = await getBytesFromAsset(
-            widget.secondPointMarkerIcon, widget.secondMarkerIconWidth);
+            widget.secondPointMarkerIcon!, widget.secondMarkerIconWidth);
 
         await LocationProvider.drawLine(
             apiKey: widget.apiKey,
@@ -241,7 +223,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
       /// Applying Condition Three
       else if (widget.secondPointMarkerIcon == null) {
         final Uint8List firstmarkerIcon = await getBytesFromAsset(
-            widget.firstPointMarkerIcon, widget.firstMarkerIconWidth);
+            widget.firstPointMarkerIcon!, widget.firstMarkerIconWidth);
 
         await LocationProvider.drawLine(
             apiKey: widget.apiKey,
@@ -263,9 +245,9 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
       /// Applying Condition Four
       else {
         final Uint8List firstmarkerIcon = await getBytesFromAsset(
-            widget.firstPointMarkerIcon, widget.firstMarkerIconWidth);
+            widget.firstPointMarkerIcon!, widget.firstMarkerIconWidth);
         final Uint8List secondmarkerIcon = await getBytesFromAsset(
-            widget.secondPointMarkerIcon, widget.secondMarkerIconWidth);
+            widget.secondPointMarkerIcon!, widget.secondMarkerIconWidth);
 
         await LocationProvider.drawLine(
             apiKey: widget.apiKey,
@@ -299,7 +281,7 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
         byteData.buffer.asUint8List(),
         targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
         .buffer
         .asUint8List();
   }

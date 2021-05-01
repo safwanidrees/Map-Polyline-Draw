@@ -4,52 +4,52 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_polyline_draw/helper/location_helper.dart';
 
 class LocationProvider {
-  static LatLng firstPoint;
-  static LatLng secondPoint;
+  static LatLng? firstPoint;
+  static LatLng? secondPoint;
   static final Set<Marker> markers = {};
   static final Set<Polyline> polyLines = {};
-  static GoogleMapController mapController;
+  static GoogleMapController? mapController;
   static LocationHelper locationHelper = LocationHelper();
 
   /// Draw PolineLine Function
   static Future<void> drawLine({
-    String apiKey,
+    String? apiKey,
 
     /// Map Api Key
-    LatLng firstPoint,
+    required LatLng firstPoint,
 
     /// Marker One Longitude and Latitude
-    LatLng secondPoint,
+    required LatLng secondPoint,
 
     /// Marker Two Longitude and Latitude
-    Color lineColor,
+    required Color lineColor,
 
     ///Polyline Color
-    Uint8List firstmarkerIcon,
+    Uint8List? firstmarkerIcon,
 
     ///First Marker icon
-    Uint8List secondmarkerIcon,
+    Uint8List? secondmarkerIcon,
 
     ///Second Marker Icon
-    int lineWidth,
+    required int lineWidth,
 
     /// Polyline width
-    bool showFirstMarker,
+    required bool showFirstMarker,
 
     /// First Marker icon Hide/Show
-    bool showSecondMarker,
+    required bool showSecondMarker,
 
     /// Second Marker icon Hide/Show
-    String info1,
+    String? info1,
 
     ///Marker One Info Window Text
-    String info2,
+    String? info2,
 
     ///Marker Two Info Window Text
-    Function markerOneOnTap,
+    Function? markerOneOnTap,
 
     ///Marker One onTap
-    Function markerTwoOnTap,
+    Function? markerTwoOnTap,
 
     ///Marker Two onTap
   }) async {
@@ -66,7 +66,8 @@ class LocationProvider {
         markerOneOnTap: markerOneOnTap);
 
     ///Getting information from Google Map Api
-    String data = await locationHelper.getRouteCoordinates(
+
+    String? data = await locationHelper.getRouteCoordinates(
         firstPoint, secondPoint, apiKey);
     print(data);
     createPolyline(data, lineColor, lineWidth);
@@ -74,7 +75,7 @@ class LocationProvider {
 
   ///Creating Polyline
   static void createPolyline(
-      String encondedPolyline, Color lineColor, int lineWidth) {
+      String? encondedPolyline, Color lineColor, int lineWidth) {
     polyLines.add(Polyline(
         polylineId: PolylineId(secondPoint.toString()),
         width: lineWidth,
@@ -82,11 +83,11 @@ class LocationProvider {
         color: lineColor));
   }
 
-  static List decodedPolyline(String poly) {
-    var list1 = poly.codeUnits;
+  static List decodedPolyline(String? poly) {
+    var list1 = poly?.codeUnits;
     var list2 = [];
     int index = 0;
-    int len = poly.length;
+    int? len = poly?.length;
     int c = 0;
 
     /// Repeating this until all attributes are decoded
@@ -96,7 +97,7 @@ class LocationProvider {
 
       /// Decoding value of one attribute
       do {
-        c = list1[index] - 63;
+        c = list1![index] - 63;
         value |= (c & 0x1F) << (shift * 5);
         index++;
         shift++;
@@ -108,7 +109,7 @@ class LocationProvider {
       }
       var value1 = (value >> 1) * 0.00001;
       list2.add(value1);
-    } while (index < len);
+    } while (index < len!);
 
     ///Adding to previous value
     for (var i = 2; i < list2.length; i++) list2[i] += list2[i - 2];
@@ -117,22 +118,22 @@ class LocationProvider {
 
   /// Add Marker on the Map
   static void _addMarker(
-      {LatLng firstPoint,
-      LatLng secondPoint,
-      Uint8List firstmarkerIcon,
-      Uint8List secondmarkerIcon,
-      bool showFirstmarker,
-      bool showSecondMarker,
-      String info1,
-      String info2,
-      Function markerOneOnTap,
-      Function markerTwoOnTap}) {
+      {LatLng? firstPoint,
+      LatLng? secondPoint,
+      Uint8List? firstmarkerIcon,
+      Uint8List? secondmarkerIcon,
+      required bool showFirstmarker,
+      required bool showSecondMarker,
+      String? info1,
+      String? info2,
+      Function? markerOneOnTap,
+      Function? markerTwoOnTap}) {
     if (showFirstmarker) {
       markers.add(Marker(
-          onTap: markerOneOnTap,
+          onTap: markerOneOnTap as void Function()?,
           markerId: MarkerId("marker1"),
-          position: firstPoint,
-          infoWindow: info1 == null ? null : InfoWindow(title: info1),
+          position: firstPoint!,
+          infoWindow: InfoWindow(title: info1),
           icon: firstmarkerIcon == null
               ? BitmapDescriptor.defaultMarker
               : BitmapDescriptor.fromBytes(firstmarkerIcon)));
@@ -140,10 +141,10 @@ class LocationProvider {
 
     if (showSecondMarker) {
       markers.add(Marker(
-          onTap: markerTwoOnTap,
+          onTap: markerTwoOnTap as void Function()?,
           markerId: MarkerId(secondPoint.toString()),
-          position: secondPoint,
-          infoWindow: info2 == null ? null : InfoWindow(title: info2),
+          position: secondPoint!,
+          infoWindow: InfoWindow(title: info2),
           icon: secondmarkerIcon == null
               ? BitmapDescriptor.defaultMarker
               : BitmapDescriptor.fromBytes(secondmarkerIcon)));
