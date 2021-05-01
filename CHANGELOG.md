@@ -21,3 +21,7 @@ Latest Google map version
 [1.0.3] - 1 Map 2020.
 
 Latest Google map version
+
+[1.0.4] - 1 Map 2020.
+
+Migrate to null safety
