@@ -4,7 +4,7 @@ Map Polyline Draw Package show Map Polyline between Two Points in the map. It al
 
 ## Screen Shots
 <img src="https://drive.google.com/uc?export=view&id=1B-crKk30r6PS7tqITBZ-oedi1irN93jt" alt="alt text" width="250">
-<img src="https://drive.google.com/uc?export=view&id=1xoRxpjuxEIvuD1PINcJRjgV5yOAxuZN3" alt="alt text" width="250">
+<img src="https://drive.google.com/uc?export=view&id=1P3zK1tQWVi7jUXtC2Hb0cDq0zIaUIUW6" alt="alt text" width="250">
 
 ## Usage
 * To use this, add map_polyline_draw as a dependency in your pubspec.yaml file.
