@@ -39,31 +39,31 @@ class _MyHomePageState extends State<MyHomePage> {
       body: MapPolyLineDraw(
         //These three are compulsory to add otherwise it will generate error
         apiKey: "YOUR_API_KEY",
-        firstPoint: MapPoint(24.8960309, 67.0792159),
-        secondPoint: MapPoint(24.9425822, 67.0691675),
-        // mapTypes: MapTypes.satellite,
-        // mapOnTap: (point) {
-        //   print(point.toString());
-        // },
-        // myLocationEnabled: true,
-        // markerOneOnTap: () {
-        //   print("Marker One Tap");
-        // },
-        // markerTwoOnTap: () {
-        //   print("Marker Two Tap");
-        // },
-        // trafficEnable: true,
-        // markerOneInfoText: "First Point",
-        // markerTwoInfoText: "Second Point",
-        // showMarkerOne: true,
-        // showMarkerTwo: true,
-        // firstPointMarkerIcon: 'assets/images/map.png',
-        // secondPointMarkerIcon: 'assets/images/map.png',
-        // lineColor: Colors.green,
-        // lineWidth: 10,
-        // mapZoom: 10,
-        // firstMarkerIconWidth: 120,
-        // secondMarkerIconWidth: 120,
+        firstPoint: MapPoint(24.9402897, 67.0770537),
+        secondPoint: MapPoint(24.9242722, 67.0794189),
+        mapTypes: MapTypes.satellite,
+        mapOnTap: (point) {
+          print(point.toString());
+        },
+        myLocationEnabled: true,
+        markerOneOnTap: () {
+          print("Marker One Tap");
+        },
+        markerTwoOnTap: () {
+          print("Marker Two Tap");
+        },
+        trafficEnable: true,
+        markerOneInfoText: "First Point",
+        markerTwoInfoText: "Second Point",
+        showMarkerOne: true,
+        showMarkerTwo: true,
+        firstPointMarkerIcon: 'assets/images/map.png',
+        secondPointMarkerIcon: 'assets/images/map.png',
+        lineColor: Colors.green,
+        lineWidth: 10,
+        mapZoom: 10,
+        firstMarkerIconWidth: 120,
+        secondMarkerIconWidth: 120,
       ),
     );
   }

@@ -66,10 +66,10 @@ class LocationProvider {
         markerOneOnTap: markerOneOnTap);
 
     ///Getting information from Google Map Api
-    String route = await locationHelper.getRouteCoordinates(
+    String data = await locationHelper.getRouteCoordinates(
         firstPoint, secondPoint, apiKey);
-
-    createPolyline(route, lineColor, lineWidth);
+    print(data);
+    createPolyline(data, lineColor, lineWidth);
   }
 
   ///Creating Polyline
@@ -84,7 +84,7 @@ class LocationProvider {
 
   static List decodedPolyline(String poly) {
     var list1 = poly.codeUnits;
-    var list2 = new List();
+    var list2 = [];
     int index = 0;
     int len = poly.length;
     int c = 0;

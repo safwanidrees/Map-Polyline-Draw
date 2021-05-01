@@ -289,7 +289,6 @@ class _MapPolyLineDrawState extends State<MapPolyLineDraw> {
         _isLoading = false;
       });
     } catch (error) {
-      print(error);
       throw error;
     }
   }

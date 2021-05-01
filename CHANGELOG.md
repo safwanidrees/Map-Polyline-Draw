@@ -18,3 +18,6 @@ Map Polyline Draw First stable Version.
 
 Latest Google map version
 
+[1.0.3] - 1 Map 2020.
+
+Latest Google map version
